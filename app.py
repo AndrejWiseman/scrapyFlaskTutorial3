@@ -21,7 +21,8 @@ def scrape():
         'start_requests': True,
     }
 
-    response = requests.get('http://localhost:9080/crawl.json', params)
+    # response = requests.get('http://localhost:9080/crawl.json', params)
+    response = requests.get('https://scrapy-flask-tutorial3-1.vercel.app//crawl.json', params)
     data = json.loads(response.text)
     df = pd.DataFrame(data=data['items'], columns=['Title', 'Price'])
     return render_template('simple.html', tables=[df.to_html(classes='data', index=False)], titles=df.columns.values)
